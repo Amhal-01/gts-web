@@ -12,24 +12,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gts.web.models.Etudiant;
+import com.gts.web.services.EcoleSI;
 import com.gts.web.services.EtudiantSI;
+import com.gts.web.services.PointDeRamassageSI;
 
 @Controller
 @RequestMapping("/etudiants")
 public class EtudiantController {
 	@Autowired
 	EtudiantSI service;
+	@Autowired
+	EcoleSI ecoleSI;
+	@Autowired
+	PointDeRamassageSI pointDeRamassageSI;
 	
 	@GetMapping("/add")
 	public String ajouter(Model m) {
 		Etudiant o = new Etudiant();
 		m.addAttribute("etudiant",o);
+		m.addAttribute("ecoles",ecoleSI.getAll());
+		m.addAttribute("pdrs",pointDeRamassageSI.getAll());
 		return "Etudiant/input";
 	}
 	
 	@PostMapping("/add")
 	public String ajouter(@ModelAttribute Etudiant o, BindingResult result) {
 		if(result.hasErrors()) {
+			System.out.println(result.getFieldError());
 			return "Etudiant/input";
 		}
 		if(o.getId() != 0) {
@@ -37,10 +46,10 @@ public class EtudiantController {
 		}else {
 			service.create(o);
 		}
-		return "redirect:liste";
+		return "redirect:";
 	}
 	
-	@GetMapping("/liste")
+	@GetMapping("/")
 	public String index(Model m) {
 		m.addAttribute("etudiants",service.getAll() );
 		return "Etudiant/index";
@@ -50,7 +59,7 @@ public class EtudiantController {
 	public String supprimer(@PathVariable int id) {
 		Etudiant o = service.getById(id);
 		service.delete(o);
-		return "redirect:../liste";
+		return "redirect:../";
 	}
 	
 	@GetMapping("/details/{id}")

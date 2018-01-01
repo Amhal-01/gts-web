@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Banque implements Serializable{
@@ -16,8 +15,6 @@ public class Banque implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String nom;
-	@OneToOne
-	private Cheque cheque;
 	
 	public int getId() {
 		return id;
@@ -31,11 +28,4 @@ public class Banque implements Serializable{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public Cheque getCheque() {
-		return cheque;
-	}
-	public void setCheque(Cheque cheque) {
-		this.cheque = cheque;
-	}
-
 }

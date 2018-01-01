@@ -20,6 +20,7 @@ public class Cheque implements Serializable{
 	private Banque banque;
 	private String ville;
 	private String nom;
+	
 	public int getId() {
 		return id;
 	}

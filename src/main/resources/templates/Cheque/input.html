@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
+<link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css"></link>
+
+<title>GTS :: Panneau de configuration</title>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<div class="row">
+			<form method="POST" action="/cheques/add" th:object="${cheque}">
+				<div class="form-group">
+					<label for="banque">Banque</label> <select class="form-control"
+						id="banque" name="banque">
+						<option th:each="b: ${banques}" th:value="${b.id}"
+							th:text="${b.nom}"></option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="rib">RIB</label> <input type="text"
+						class="form-control" id="rib" name="rib" placeholder="RIB"
+						th:value="${cheque.rib}" />
+				</div>
+				<div class="form-group">
+					<label for="ville">Ville</label> <input type="text"
+						class="form-control" id="ville" name="ville" placeholder="Ville"
+						th:value="${cheque.ville}" />
+				</div>
+				<div class="form-group">
+					<label for="nom">Nom d'émetteur</label> <input type="text"
+						class="form-control" id="nom" name="nom"
+						placeholder="Nom d'émetteur" th:value="${cheque.nom}" />
+				</div>
+				<input type="hidden" class="form-control" name="id"
+					th:value="${cheque.id}" /> <input type="submit" name="ok"
+					value="Envoyé" class="btn btn-success" />
+			</form>
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+	<script src="/webjars/jquery/3.2.1/jquery.js"></script>
+	<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.js"></script>
+</body>
+</html>

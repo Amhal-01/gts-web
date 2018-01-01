@@ -37,10 +37,10 @@ public class BusController {
 		}else {
 			service.create(o);
 		}
-		return "redirect:liste";
+		return "redirect:/buss/";
 	}
 	
-	@GetMapping("/liste")
+	@GetMapping("/")
 	public String index(Model m) {
 		m.addAttribute("buss",service.getAll() );
 		return "Bus/index";
@@ -50,7 +50,7 @@ public class BusController {
 	public String supprimer(@PathVariable int id) {
 		Bus o = service.getById(id);
 		service.delete(o);
-		return "redirect:../liste";
+		return "redirect:/buss/";
 	}
 	
 	@GetMapping("/details/{id}")

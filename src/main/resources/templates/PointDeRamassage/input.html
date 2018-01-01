@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
+<link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css"></link>
+
+<title>GTS :: Panneau de configuration</title>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<div class="row">
+			<form method="POST" action="/pointDeRamassages/add" th:object="${pointDeRamassage}">
+				<div class="form-group">
+					<label for="point">Point de ramassage</label> <select class="form-control"
+						id="point" name="point">
+						<option th:each="b: ${points}" th:value="${b.id}"
+							th:text="${b.address}"></option>
+					</select>
+					<a class="btn btn-success" th:href="@{/itineraires/add}">Ajouter une nouvelle adresse</a>
+				</div>
+				<div class="form-group">
+					<label for="horaire">Horaire</label> 
+					<input type="time" class="form-control" id="horaire" name="horaire" placeholder="Horaire"
+						th:value="${pointDeRamassage.horaire}" />
+				</div>
+				<input type="hidden" class="form-control" name="id"
+					th:value="${pointDeRamassage.id}" /> <input type="submit" name="ok"
+					value="Envoyé" class="btn btn-success" />
+			</form>
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+	<script src="/webjars/jquery/3.2.1/jquery.js"></script>
+	<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.js"></script>
+</body>
+</html>

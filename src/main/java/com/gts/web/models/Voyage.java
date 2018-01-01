@@ -23,6 +23,14 @@ public class Voyage implements Serializable{
 	private Bus bus;
 	@ManyToMany
 	private List<PointDeRamassage> pdr;
+	
+	public Voyage(Chauffeur chauffeur, Bus bus, List<PointDeRamassage> pdr) {
+		this.chauffeur = chauffeur;
+		this.bus = bus;
+		this.pdr = pdr;
+	}
+	public Voyage() {
+	}
 	public int getId() {
 		return id;
 	}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>GTS :: Public page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
+<link href="./vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css"/>
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+	rel='stylesheet' type='text/css'/>
+<link
+	href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+	rel='stylesheet' type='text/css'/>
+
+<link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="./vendor/magnific-popup/magnific-popup.css" rel="stylesheet" />
+<link href="./css/creative.min.css" rel="stylesheet" />
+</head>
+
+<body id="page-top">
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
+		id="mainNav">
+		<div class="container">
+			<a class="navbar-brand js-scroll-trigger" href="#page-top">GTS</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="#about">À propos de nous</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="#services">Nos services</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="#contact">Contact</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						th:href="@{/login}">Se connecter</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<header class="masthead text-center text-white d-flex">
+		<div class="container my-auto">
+			<div class="row">
+				<div class="col-lg-10 mx-auto">
+					<h1 class="text-uppercase">
+						<strong>Transport à petit prix, confort garanti</strong>
+					</h1>
+					<hr />
+				</div>
+				<div class="col-lg-8 mx-auto">
+					<p class="text-faded mb-5">Bénéficiez d'une remise de 50% sur
+						tout abonnement avant le 1er Mars 2018</p>
+					<a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Plus
+						d'informations</a>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<section class="bg-primary" id="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mx-auto text-center">
+					<h2 class="section-heading text-white">Nous avons tous ce que
+						vous cherchez !</h2>
+					<hr class="light my-4" />
+					<p class="text-faded mb-4">GTS est l'unique transporteur
+						scolaire au Maroc!</p>
+					<a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Découvrez
+						plus nos services!</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="services">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2 class="section-heading">Nos services</h2>
+					<hr class="my-4" />
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-6 text-center">
+					<div class="service-box mt-5 mx-auto">
+						<i class="fa fa-4x fa-paper-plane text-primary mb-3 sr-icons"></i>
+						<h3 class="mb-3">Plusieurs points de ramassages</h3>
+						<p class="text-muted mb-0">Nous essayons d'être le plus proche
+							possible!</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 text-center">
+					<div class="service-box mt-5 mx-auto">
+						<i class="fa fa-4x fa-newspaper-o text-primary mb-3 sr-icons"></i>
+						<h3 class="mb-3">Plusieurs écoles partenaires</h3>
+						<p class="text-muted mb-0">Presque la majorité d'école à
+							Marrakech sont des partenaires.</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 text-center">
+					<div class="service-box mt-5 mx-auto">
+						<i class="fa fa-4x fa-heart text-primary mb-3 sr-icons"></i>
+						<h3 class="mb-3">Made with Love</h3>
+						<p class="text-muted mb-0"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="bg-warning" id="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mx-auto text-center">
+					<h2 class="section-heading">Venez nous dire Bonjour!</h2>
+					<hr class="my-4" />
+					<p class="mb-5">Visitez nos locaux, ou bien appelez nous vite!</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 ml-auto text-center">
+					<i class="fa fa-phone fa-3x mb-3 sr-contact"></i>
+					<p>+212-661-662-663</p>
+				</div>
+				<div class="col-lg-4 mr-auto text-center">
+					<i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
+					<p>
+						<a href="mailto:contact@gts.com">contact@gts.com</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="./vendor/jquery/jquery.min.js"></script>
+	<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="./vendor/scrollreveal/scrollreveal.min.js"></script>
+	<script src="./vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+	<script src="./js/creative.min.js"></script>
+</body>
+
+</html>

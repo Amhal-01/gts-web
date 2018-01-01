@@ -37,10 +37,10 @@ public class BanqueController {
 		}else {
 			service.create(o);
 		}
-		return "redirect:liste";
+		return "redirect:";
 	}
 	
-	@GetMapping("/liste")
+	@GetMapping("/")
 	public String index(Model m) {
 		m.addAttribute("banques",service.getAll() );
 		return "Banque/index";
@@ -50,7 +50,7 @@ public class BanqueController {
 	public String supprimer(@PathVariable int id) {
 		Banque o = service.getById(id);
 		service.delete(o);
-		return "redirect:../liste";
+		return "redirect:../";
 	}
 	
 	@GetMapping("/details/{id}")

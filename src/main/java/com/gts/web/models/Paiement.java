@@ -12,56 +12,77 @@ import javax.persistence.OneToOne;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class Paiement implements Serializable{
+public class Paiement implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate datePaiement;
 	private double montant;
 	@OneToOne
 	private Ecole ecole;
 	@OneToOne
-	private Tresorier tresorier;
-	@OneToOne
 	// Si Cheque == null donc c'est espece ;)
 	private Cheque cheque;
+	private boolean isValid;
+
+	public Paiement(LocalDate datePaiement, double montant, Ecole ecole, boolean isValid) {
+		this.datePaiement = datePaiement;
+		this.montant = montant;
+		this.ecole = ecole;
+		this.isValid = isValid;
+	}
+
+	public Paiement() {
+	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public LocalDate getDatePaiement() {
 		return datePaiement;
 	}
+
 	public void setDatePaiement(LocalDate datePaiement) {
 		this.datePaiement = datePaiement;
 	}
+
 	public double getMontant() {
 		return montant;
 	}
+
 	public void setMontant(double montant) {
 		this.montant = montant;
 	}
+
 	public Ecole getEcole() {
 		return ecole;
 	}
+
 	public void setEcole(Ecole ecole) {
 		this.ecole = ecole;
 	}
+
 	public Cheque getCheque() {
 		return cheque;
 	}
+
 	public void setCheque(Cheque cheque) {
 		this.cheque = cheque;
 	}
-	public Tresorier getTresorier() {
-		return tresorier;
+
+	public boolean getIsValid() {
+		return isValid;
 	}
-	public void setTresorier(Tresorier tresorier) {
-		this.tresorier = tresorier;
+
+	public void setIsValid(boolean isValid) {
+		this.isValid = isValid;
 	}
 }

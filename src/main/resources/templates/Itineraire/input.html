@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
+<link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css"></link>
+
+<title>GTS :: Panneau de configuration</title>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<h2>Conversion d'adresse en itinéraire</h2>
+		<form class="form-horizontal" role="form" method="POST"
+			action="/itineraires/add" th:object="${itineraire}">
+			<div class="form-group">
+				<label class="col-sm-3" data-toggle="tooltip"
+					title="Adresse postale à convertir"> Adresse : </label>
+				<div class="col-md-6">
+					<input class="form-control" type="text" size="60" name="address"
+						id="address" th:value="${itineraire.address}"
+						placeholder="Adresse, ville, pays" />
+				</div>
+				<div class="col-md-3" style="text-align: right">
+					<a onClick="btnAddr2Gps();" class="btn btn-success"> <span
+						class="glyphicon glyphicon-screenshot"></span> Convertir en
+						coordonnées GPS
+					</a>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-3" data-toggle="tooltip"
+					title="Coordonnées en degrés décimaux"> Coordonnées DD : </label>
+				<div class="col-md-6">
+					<table style="width: 100%; text-align: center">
+						<tr>
+							<td><input th:value="${itineraire.lat}" class="form-control"
+								type="text" name="lat" id="lat" placeholder="Latitude"
+								onkeydown="keyListenCoord" /></td>
+							<td>x</td>
+							<td><input th:value="${itineraire.lon}" class="form-control"
+								type="text" name="lon" id="lon" placeholder="Longitude"
+								onkeydown="keyListenCoord" /></td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-md-3" style="text-align: right">
+					<button class="btn btn-success">
+						<span class="glyphicon glyphicon-screenshot"></span> Enregistrer
+						le résultat
+					</button>
+				</div>
+			</div>
+			<div class="form-group">
+				<div id="map_canvas" style="width: 100%; height: 500px"></div>
+			</div>
+			<input type="hidden" class="form-control" name="id"
+				th:value="${itineraire.id}" />
+
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASfsV_dUtLmfJ6FTwZsgZ8qhqmWMj0mYw"></script>
+	<script type="text/javascript" src="../../js/projet.js"></script>
+	<script src="../webjars/jquery/3.2.1/jquery.js"></script>
+	<script src="../webjars/bootstrap/3.3.7-1/js/bootstrap.js"></script>
+</body>
+</html>

@@ -1,14 +1,11 @@
 package com.gts.web.models;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Itineraire implements Serializable{
@@ -17,49 +14,33 @@ public class Itineraire implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private double latitude;
-	private double longitude;
-	@OneToOne
-	private Ecole ecole;
-	@OneToOne
-	private PointDeRamassage pdr;
-	@ManyToMany
-	private List<Voyage> voyage;
+	private double lat;
+	private double lon;
+	private String address;
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public double getLatitude() {
-		return latitude;
+	public double getLat() {
+		return lat;
 	}
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
+	public void setLat(double lat) {
+		this.lat = lat;
 	}
-	public double getLongitude() {
-		return longitude;
+	public double getLon() {
+		return lon;
 	}
-	public void setLongitude(double longitude) {
-		this.longitude = longitude;
+	public void setLon(double lon) {
+		this.lon = lon;
 	}
-	public Ecole getEcole() {
-		return ecole;
+	public String getAddress() {
+		return address;
 	}
-	public void setEcole(Ecole ecole) {
-		this.ecole = ecole;
-	}
-	public PointDeRamassage getPdr() {
-		return pdr;
-	}
-	public void setPdr(PointDeRamassage pdr) {
-		this.pdr = pdr;
-	}
-	public List<Voyage> getVoyage() {
-		return voyage;
-	}
-	public void setVoyage(List<Voyage> voyage) {
-		this.voyage = voyage;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 }

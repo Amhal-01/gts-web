@@ -1,6 +1,8 @@
 package com.gts.web.controllers;
 
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +14,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gts.web.models.Paiement;
+import com.gts.web.services.ChequeSI;
+import com.gts.web.services.EcoleSI;
 import com.gts.web.services.PaiementSI;
 
 @Controller
 @RequestMapping("/paiements")
 public class PaiementController {
+	@Autowired
+	EcoleSI ecole;
+	@Autowired
+	ChequeSI cheque;
 	@Autowired
 	PaiementSI service;
 	
@@ -24,6 +32,8 @@ public class PaiementController {
 	public String ajouter(Model m) {
 		Paiement o = new Paiement();
 		m.addAttribute("paiement",o);
+		m.addAttribute("ecoles",ecole.getAll());
+		m.addAttribute("cheques",cheque.getAll());
 		return "Paiement/input";
 	}
 	
@@ -33,14 +43,16 @@ public class PaiementController {
 			return "Paiement/input";
 		}
 		if(o.getId() != 0) {
+			o.setDatePaiement(service.getById(o.getId()).getDatePaiement());
 			service.update(o);
 		}else {
+			o.setDatePaiement(LocalDate.now());
 			service.create(o);
 		}
-		return "redirect:liste";
+		return "redirect:/paiements/";
 	}
 	
-	@GetMapping("/liste")
+	@GetMapping("/")
 	public String index(Model m) {
 		m.addAttribute("paiements",service.getAll() );
 		return "Paiement/index";
@@ -50,7 +62,7 @@ public class PaiementController {
 	public String supprimer(@PathVariable int id) {
 		Paiement o = service.getById(id);
 		service.delete(o);
-		return "redirect:../liste";
+		return "redirect:/paiements/";
 	}
 	
 	@GetMapping("/details/{id}")

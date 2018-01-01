@@ -1,7 +1,7 @@
 package com.gts.web.models;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -23,12 +23,13 @@ public class PointDeRamassage implements Serializable{
 	private int id;
 	@OneToOne
 	private Itineraire point;
-	@DateTimeFormat(pattern="hh:ii")
-	private LocalDate horaire;
+	@DateTimeFormat(pattern="HH:mm")
+	private LocalDateTime horaire;
 	@ManyToMany
 	private List<Voyage> voyages;
 	@OneToMany
 	private List<Etudiant> etudiants;
+	
 	public int getId() {
 		return id;
 	}
@@ -41,10 +42,10 @@ public class PointDeRamassage implements Serializable{
 	public void setPoint(Itineraire point) {
 		this.point = point;
 	}
-	public LocalDate getHoraire() {
+	public LocalDateTime getHoraire() {
 		return horaire;
 	}
-	public void setHoraire(LocalDate horaire) {
+	public void setHoraire(LocalDateTime horaire) {
 		this.horaire = horaire;
 	}
 	public List<Voyage> getVoyages() {

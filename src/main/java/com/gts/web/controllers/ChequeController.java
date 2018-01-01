@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gts.web.models.Cheque;
+import com.gts.web.services.BanqueSI;
 import com.gts.web.services.ChequeSI;
 
 @Controller
@@ -19,11 +20,14 @@ import com.gts.web.services.ChequeSI;
 public class ChequeController {
 	@Autowired
 	ChequeSI service;
+	@Autowired
+	BanqueSI banque;
 	
 	@GetMapping("/add")
 	public String ajouter(Model m) {
 		Cheque o = new Cheque();
 		m.addAttribute("cheque",o);
+		m.addAttribute("banques",banque.getAll());
 		return "Cheque/input";
 	}
 	
@@ -37,10 +41,10 @@ public class ChequeController {
 		}else {
 			service.create(o);
 		}
-		return "redirect:liste";
+		return "redirect:";
 	}
 	
-	@GetMapping("/liste")
+	@GetMapping("/")
 	public String index(Model m) {
 		m.addAttribute("cheques",service.getAll() );
 		return "Cheque/index";
@@ -50,7 +54,7 @@ public class ChequeController {
 	public String supprimer(@PathVariable int id) {
 		Cheque o = service.getById(id);
 		service.delete(o);
-		return "redirect:../liste";
+		return "redirect:../";
 	}
 	
 	@GetMapping("/details/{id}")

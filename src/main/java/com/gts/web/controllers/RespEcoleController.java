@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gts.web.models.RespEcole;
+import com.gts.web.services.EcoleSI;
 import com.gts.web.services.RespEcoleSI;
 
 @Controller
@@ -19,11 +20,13 @@ import com.gts.web.services.RespEcoleSI;
 public class RespEcoleController {
 	@Autowired
 	RespEcoleSI service;
-	
+	@Autowired
+	EcoleSI ecoleSI;
 	@GetMapping("/add")
 	public String ajouter(Model m) {
 		RespEcole o = new RespEcole();
 		m.addAttribute("respEcole",o);
+		m.addAttribute("ecoles",ecoleSI.getAll());
 		return "RespEcole/input";
 	}
 	
@@ -37,10 +40,10 @@ public class RespEcoleController {
 		}else {
 			service.create(o);
 		}
-		return "redirect:liste";
+		return "redirect:";
 	}
 	
-	@GetMapping("/liste")
+	@GetMapping("/")
 	public String index(Model m) {
 		m.addAttribute("respEcoles",service.getAll() );
 		return "RespEcole/index";
@@ -50,7 +53,7 @@ public class RespEcoleController {
 	public String supprimer(@PathVariable int id) {
 		RespEcole o = service.getById(id);
 		service.delete(o);
-		return "redirect:../liste";
+		return "redirect:../";
 	}
 	
 	@GetMapping("/details/{id}")

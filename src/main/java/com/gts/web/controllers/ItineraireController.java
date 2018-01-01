@@ -19,6 +19,7 @@ import com.gts.web.services.ItineraireSI;
 public class ItineraireController {
 	@Autowired
 	ItineraireSI service;
+	Itineraire it = new Itineraire();
 	
 	@GetMapping("/add")
 	public String ajouter(Model m) {
@@ -37,10 +38,10 @@ public class ItineraireController {
 		}else {
 			service.create(o);
 		}
-		return "redirect:liste";
+		return "redirect:";
 	}
 	
-	@GetMapping("/liste")
+	@GetMapping("/")
 	public String index(Model m) {
 		m.addAttribute("itineraires",service.getAll() );
 		return "Itineraire/index";
@@ -50,7 +51,7 @@ public class ItineraireController {
 	public String supprimer(@PathVariable int id) {
 		Itineraire o = service.getById(id);
 		service.delete(o);
-		return "redirect:../liste";
+		return "redirect:../";
 	}
 	
 	@GetMapping("/details/{id}")

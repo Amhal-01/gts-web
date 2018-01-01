@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Bus implements Serializable{
@@ -19,8 +18,7 @@ public class Bus implements Serializable{
 	private String marque;
 	private int nbPlaces;
 	private Boolean isOk;
-	@OneToOne
-	private Voyage voyage;
+	
 	public int getId() {
 		return id;
 	}
@@ -50,12 +48,6 @@ public class Bus implements Serializable{
 	}
 	public void setIsOk(Boolean isOk) {
 		this.isOk = isOk;
-	}
-	public Voyage getVoyage() {
-		return voyage;
-	}
-	public void setVoyage(Voyage voyage) {
-		this.voyage = voyage;
 	}
 	
 }

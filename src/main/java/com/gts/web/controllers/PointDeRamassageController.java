@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gts.web.models.PointDeRamassage;
+import com.gts.web.services.ItineraireSI;
 import com.gts.web.services.PointDeRamassageSI;
 
 @Controller
@@ -19,17 +20,21 @@ import com.gts.web.services.PointDeRamassageSI;
 public class PointDeRamassageController {
 	@Autowired
 	PointDeRamassageSI service;
+	@Autowired
+	ItineraireSI it;
 	
 	@GetMapping("/add")
 	public String ajouter(Model m) {
 		PointDeRamassage o = new PointDeRamassage();
 		m.addAttribute("pointDeRamassage",o);
+		m.addAttribute("points",it.getAll());
 		return "PointDeRamassage/input";
 	}
 	
 	@PostMapping("/add")
 	public String ajouter(@ModelAttribute PointDeRamassage o, BindingResult result) {
 		if(result.hasErrors()) {
+			System.out.println(result.getFieldValue("horaire"));
 			return "PointDeRamassage/input";
 		}
 		if(o.getId() != 0) {
@@ -37,10 +42,10 @@ public class PointDeRamassageController {
 		}else {
 			service.create(o);
 		}
-		return "redirect:liste";
+		return "redirect:";
 	}
 	
-	@GetMapping("/liste")
+	@GetMapping("/")
 	public String index(Model m) {
 		m.addAttribute("pointDeRamassages",service.getAll() );
 		return "PointDeRamassage/index";
@@ -50,7 +55,7 @@ public class PointDeRamassageController {
 	public String supprimer(@PathVariable int id) {
 		PointDeRamassage o = service.getById(id);
 		service.delete(o);
-		return "redirect:../liste";
+		return "redirect:../";
 	}
 	
 	@GetMapping("/details/{id}")

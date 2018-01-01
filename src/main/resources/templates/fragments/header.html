@@ -1,0 +1,146 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
+<link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css"></link>
+<title>:: GTS :: Panneau de configuration</title>
+</head>
+<body>
+	<div th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar-inverse">
+			<a class="navbar-brand" th:href="@{/home}">GTS Web</a>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" sec:authorize="hasRole('ROLE_ADMIN')">Banque</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/banques/add/}">Ajouter</a>
+							|
+							<a class="dropdown-item" th:href="@{/banques/}">Liste</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" sec:authorize="hasRole('ROLE_ADMIN')">Bus</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/buss/add/}">Ajouter</a>
+							|
+							<a class="dropdown-item" th:href="@{/buss/}">Liste</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" sec:authorize="hasRole('ROLE_ADMIN')">Chauffeur</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/chauffeurs/add/}">Ajouter</a>
+							|
+							<a class="dropdown-item" th:href="@{/chauffeurs/}">Liste</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" sec:authorize="hasRole('ROLE_ADMIN')">Chèque</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/cheques/add/}">Ajouter</a>
+							|
+							<a class="dropdown-item" th:href="@{/cheques/}">Liste</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" sec:authorize="hasRole('ROLE_ADMIN')">École</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/ecoles/add/}">Ajouter</a>
+							|
+							<a class="dropdown-item" th:href="@{/ecoles/}">Liste</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">Étudiant</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/etudiants/add/}">Ajouter</a>
+							|
+							<a class="dropdown-item" th:href="@{/etudiants/}">Liste</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" sec:authorize="hasRole('ROLE_ADMIN')">Paiement</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/paiements/add/}">Ajouter</a>
+							|
+							<a class="dropdown-item" th:href="@{/paiements/}">Liste</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">Point de ramassage</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/pointDeRamassages/add/}">Ajouter</a>
+							|
+							<a class="dropdown-item" th:href="@{/pointDeRamassages/}">Liste</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" sec:authorize="hasRole('ROLE_ADMIN')">Responsable école</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/respEcoles/add/}">Ajouter</a>
+							|
+							<a class="dropdown-item" th:href="@{/respEcoles/}">Liste</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">Voyage</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/voyages/add/}">Ajouter</a>
+							|
+							<a class="dropdown-item" th:href="@{/voyages/}">Liste</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" sec:authorize="hasRole('ROLE_ADMIN')">Itinéraire</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/itineraires/add/}">Ajouter</a>
+							|
+							<a class="dropdown-item" th:href="@{/itineraires/}">Liste</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" sec:authorize="hasRole('ROLE_ADMIN')">Utilisateur</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/utilisateurs/add/}">Ajouter</a>
+							|
+							<a class="dropdown-item" th:href="@{/utilisateurs/}">Liste</a>
+						</div>
+					</li>
+					<li class="active"><a th:href="@{/profile}">Mon profile</a></li>
+					<li class="active"><a th:href="@{/logout}">Se déconnecter</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<script src="../webjars/jquery/3.2.1/jquery.js"></script>
+	<script src="../webjars/bootstrap/3.3.7-1/js/bootstrap.js"></script>
+</body>
+</html>

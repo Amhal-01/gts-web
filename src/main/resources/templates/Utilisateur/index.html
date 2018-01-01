@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
+<link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css"></link>
+<title>:: GTS :: Panneau de configuration</title>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<div class="row">
+			<h2>Utilisateur</h2>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Rôle</th>
+						<th>Nom - prénom</th>
+						<th>E-mail</th>
+						<th>Téléphone</th>
+						<th>Date de naissance</th>
+						<th>Date d'inscription</th>
+						<th>Compte du utilisateur</th>
+						<th>Action</th>
+					</tr>
+
+				</thead>
+				<tr th:each="o: ${utilisateurs}">
+					<th th:text="${o.id}" />
+					<th th:each="r :${o.role}" th:text="${r}" />
+					<td th:text="${o.nom} + ' ' + ${o.prenom}" />
+					<td th:text="${o.email}" />
+					<td th:text="${o.telephone}" />
+					<td th:text="${o.dateNaissance}" />
+					<td th:text="${o.dateInscription}" />
+					<td th:text="${o.isActive}? 'Actif':'Inactif'" />
+					<td><a th:href="@{/utilisateurs/details/{id}(id=${o.id})}"
+						class="btn btn-primary" role="button">Plus d'information</a> <a
+						th:href="@{/utilisateurs/delete/{id}(id=${o.id})}"
+						class="btn btn-danger" role="button">X</a></td>
+				</tr>
+				<tr>
+					<td colspan="4"><a th:href="@{/utilisateurs/add}"
+						class="btn btn-success" role="button">Ajouter</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+	<script src="/webjars/jquery/3.2.1/jquery.js"></script>
+	<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.js"></script>
+</body>
+</html>
