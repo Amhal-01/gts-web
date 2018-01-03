@@ -26,6 +26,14 @@
 					<input type="time" class="form-control" id="horaire" name="horaire" placeholder="Horaire"
 						th:value="${pointDeRamassage.horaire}" />
 				</div>
+				<div class="form-group">
+					<label for="pdr">Étudiants</label> <select
+						multiple="multiple" class="form-control" id="pdr" name="pdr">
+						<option th:value="null">Veuillez choisir</option>
+						<option th:each="b: ${etudiants}" th:value="${b.id}"
+							th:text="${b.nom}+' '+ ${b.prenom}" />
+					</select>
+				</div>
 				<input type="hidden" class="form-control" name="id"
 					th:value="${pointDeRamassage.id}" /> <input type="submit" name="ok"
 					value="Envoyé" class="btn btn-success" />

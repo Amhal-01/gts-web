@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gts.web.models.PointDeRamassage;
+import com.gts.web.services.EtudiantSI;
 import com.gts.web.services.ItineraireSI;
 import com.gts.web.services.PointDeRamassageSI;
 
@@ -22,12 +23,15 @@ public class PointDeRamassageController {
 	PointDeRamassageSI service;
 	@Autowired
 	ItineraireSI it;
+	@Autowired
+	EtudiantSI etudiant;
 	
 	@GetMapping("/add")
 	public String ajouter(Model m) {
 		PointDeRamassage o = new PointDeRamassage();
 		m.addAttribute("pointDeRamassage",o);
 		m.addAttribute("points",it.getAll());
+		m.addAttribute("etudiants",etudiant.getAll());
 		return "PointDeRamassage/input";
 	}
 	
