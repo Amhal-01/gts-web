@@ -11,29 +11,64 @@
 	<div th:replace="fragments/header :: header"></div>
 	<div class="container">
 		<div class="row">
-			<h2>Banque</h2>
+			<h2>Voyage</h2>
 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Nom de la banque</th>
+						<th>Chauffeur</th>
+						<th>Bus</th>
+						<th>Points de ramassages</th>
 						<th>Action</th>
 					</tr>
 
 				</thead>
-				<tr th:each="o: ${banques}">
+				<tr th:each="o: ${voyages}">
 					<th th:text="${o.id}" />
-					<td th:text="${o.nom}" />
-					<td><a th:href="@{/banques/details/{id}(id=${o.id})}"
+					<td th:text="${o.chauffeur.nom}" />
+					<td th:text="${o.bus.matricule}" />
+					<td class="btn btn-info btn-lg" data-toggle="modal"
+						data-target="#pdr">Liste des points de ramassages</td>
+					<td><a th:href="@{/voyages/details/{id}(id=${o.id})}"
 						class="btn btn-primary" role="button">Plus d'information</a> <a
-						th:href="@{/banques/delete/{id}(id=${o.id})}"
+						th:href="@{/voyages/delete/{id}(id=${o.id})}"
 						class="btn btn-danger" role="button">X</a></td>
 				</tr>
 				<tr>
-					<td colspan="4"><a th:href="@{/banques/add}"
+					<td colspan="4"><a th:href="@{/voyages/add}"
 						class="btn btn-success" role="button">Ajouter</a></td>
 				</tr>
 			</table>
+		</div>
+	</div>
+	<div class="modal fade" id="pdr" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Liste des points de ramassages</h4>
+				</div>
+				<div class="modal-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Horaire</th>
+								<th>Adresse</th>
+							</tr>
+
+						</thead>
+						<th:block th:each="v: ${voyages}">
+							<tr th:each="p: ${v.pdr}">
+								<td th:text="${p.horaire}" />
+								<td th:text="${p.point.address}" />
+							</tr>
+						</th:block>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div th:replace="fragments/footer :: footer"></div>

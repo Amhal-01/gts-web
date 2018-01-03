@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.gts.web.models.Ecole;
 import com.gts.web.services.EcoleSI;
 import com.gts.web.services.ItineraireSI;
+import com.gts.web.services.RespEcoleSI;
 
 @Controller
 @RequestMapping("/ecoles")
@@ -22,11 +23,14 @@ public class EcoleController {
 	EcoleSI service;
 	@Autowired
 	ItineraireSI it;
+	@Autowired
+	RespEcoleSI resp;
 	@GetMapping("/add")
 	public String ajouter(Model m) {
 		Ecole o = new Ecole();
 		m.addAttribute("ecole",o);
 		m.addAttribute("itineraires",it.getAll());
+		m.addAttribute("resps",resp.getAll());
 		return "Ecole/input";
 	}
 	

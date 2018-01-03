@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gts.web.models.Voyage;
+import com.gts.web.services.BusSI;
+import com.gts.web.services.ChauffeurSI;
+import com.gts.web.services.PointDeRamassageSI;
 import com.gts.web.services.VoyageSI;
 
 @Controller
@@ -19,11 +22,20 @@ import com.gts.web.services.VoyageSI;
 public class VoyageController {
 	@Autowired
 	VoyageSI service;
+	@Autowired
+	PointDeRamassageSI pdrSI;
+	@Autowired
+	BusSI busSI;
+	@Autowired
+	ChauffeurSI chauffeurSI;
 	
 	@GetMapping("/add")
 	public String ajouter(Model m) {
 		Voyage o = new Voyage();
 		m.addAttribute("voyage",o);
+		m.addAttribute("buss",busSI.getAll());
+		m.addAttribute("chauffeurs",chauffeurSI.getAll());
+		m.addAttribute("pdrs",pdrSI.getAll());
 		return "Voyage/input";
 	}
 	

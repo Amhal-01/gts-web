@@ -34,6 +34,14 @@
 					<label for="telephone">Telephone</label> 
 					<input type="tel" class="form-control" id="telephone" name="telephone" placeholder="Telephone" th:value="${ecole.telephone}" />
 				</div>
+				<div class="form-group">
+					<label for="resp">Responsable école</label> 
+					<select class="form-control"
+						id="respEcole" name="respEcole">
+						<option th:each="b: ${resps}" th:value="${b.id}"
+							th:text="${b.nom}"></option>
+					</select>
+				</div>				
 				<input type="hidden" class="form-control" name="id"	th:value="${ecole.id}" /> 
 					<input type="submit" name="ok"
 					value="Envoyé" class="btn btn-success" />

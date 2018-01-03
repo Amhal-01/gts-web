@@ -12,13 +12,33 @@
 	<div th:replace="fragments/header :: header"></div>
 	<div class="container">
 		<div class="row">
-			<form method="POST" action="/banques/add" th:object="${banque}">
+			<form method="POST" action="/voyages/add" th:object="${voyage}">
 				<div class="form-group">
-					<label for="nom">nom</label> 
-					<input type="text" class="form-control" id="nom" name="nom" placeholder="Nom de la banque" th:value="${banque.nom}" />
+					<label for="chauffeur">Chauffeur</label> <select
+						class="form-control" id="chauffeur" name="chauffeur">
+						<option th:value="null">Veuillez choisir</option>
+						<option th:each="b: ${chauffeurs}" th:value="${b.id}"
+							th:text="${b.nom}"></option>
+					</select>
 				</div>
-				<input type="hidden" class="form-control" name="id"	th:value="${banque.id}" /> 
-					<input type="submit" name="ok"
+				<div class="form-group">
+					<label for="bus">Bus</label> <select class="form-control" id="bus"
+						name="bus">
+						<option th:value="null">Veuillez choisir</option>
+						<option th:each="b: ${buss}" th:value="${b.id}"
+							th:text="${b.matricule}" />
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="pdr">Point de ramassage</label> <select
+						multiple="multiple" class="form-control" id="pdr" name="pdr">
+						<option th:value="null">Veuillez choisir</option>
+						<option th:each="b: ${pdrs}" th:value="${b.id}"
+							th:text="'Horaire:' + ${b.horaire}+' - Adresse:' + ${b.point.address}" />
+					</select>
+				</div>
+				<input type="hidden" class="form-control" name="id"
+					th:value="${voyage.id}" /> <input type="submit" name="ok"
 					value="Envoyé" class="btn btn-success" />
 			</form>
 		</div>
